@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TeamMateListActivity"
+        <activity android:name=".StaffListActivity"
             android:screenOrientation="portrait" />
     </application>
 

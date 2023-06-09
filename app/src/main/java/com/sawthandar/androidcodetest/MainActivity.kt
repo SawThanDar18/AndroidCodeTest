@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToTeamMateList(userKeyId: String?) {
         finish()
-        TeamMateListActivity.start(this, userKeyId ?: "")
+        StaffListActivity.start(this, userKeyId ?: "")
     }
 
     private fun showLoading() {
