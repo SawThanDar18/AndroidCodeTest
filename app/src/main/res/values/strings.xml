@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidCodeTest</string>
+
+    <string name="login_label_1">Company ID</string>
+    <string name="login_label_2">Username</string>
+    <string name="login_label_3">Password</string>
+    <string name="login_label_btn">LOGIN</string>
 </resources>
