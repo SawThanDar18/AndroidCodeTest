@@ -3,15 +3,23 @@ package com.sawthandar.androidcodetest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sawthandar.androidcodetest.databinding.ActivityLogInBinding
+import com.sawthandar.androidcodetest.adapters.StaffListAdapter
+import com.sawthandar.androidcodetest.api.response.BaseResponse
+import com.sawthandar.androidcodetest.api.response.StaffListResponse
 import com.sawthandar.androidcodetest.databinding.ActivityStaffListBinding
+import com.sawthandar.androidcodetest.viewmodel.StaffListViewModel
 
 class StaffListActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityStaffListBinding
+    private val viewModel by viewModels<StaffListViewModel>()
+    private lateinit var staffListAdapter: StaffListAdapter
 
     companion object {
         private const val KEY_MODEL = "key-model"
@@ -28,9 +36,55 @@ class StaffListActivity: AppCompatActivity() {
         binding = ActivityStaffListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userKeyId: String? = intent.getStringExtra(KEY_MODEL)
-        
+        if (intent.getStringExtra(KEY_MODEL) != null) {
+            val userKeyId: String? = intent.getStringExtra(KEY_MODEL)
+            viewModel.getStaffList(userKeyId?: "")
+        }
+
         binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
+        viewModel.staffListResult.observe(this) {
+            when(it) {
+                is BaseResponse.Loading -> {
+                    showLoading()
+                }
+
+                is BaseResponse.Success -> {
+                    hideLoading()
+                    setUpStaffListData(it.data)
+
+                }
+
+                is BaseResponse.Error -> {
+                    hideLoading()
+                    processError(it.msg)
+                }
+
+                else -> {
+                    hideLoading()
+                }
+            }
+        }
+    }
+
+    private fun showLoading() {
+        binding.progressBar.isVisible = true
+    }
+
+    private fun hideLoading() {
+        binding.progressBar.isVisible = false
+    }
+
+    private fun setUpStaffListData(data: StaffListResponse?) {
+        staffListAdapter.setDataSet(data?.data?.employees?: emptyList())
+        binding.recyclerView.adapter = staffListAdapter
+    }
+
+    private fun processError(msg: String?) {
+        showToast("Error: $msg")
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }

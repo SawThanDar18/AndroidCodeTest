@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
 
             <cn.carbs.android.avatarimageview.library.AvatarImageView
-                android:id="@+id/iv_profile"
+                android:id="@+id/staffProfile"
                 android:layout_width="@dimen/staff_profile_size"
                 android:layout_height="@dimen/staff_profile_size"
                 android:layout_marginVertical="@dimen/margin_medium"
@@ -46,8 +46,8 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/iv_profile"
-                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+                app:layout_constraintStart_toEndOf="@+id/staffProfile"
+                app:layout_constraintTop_toTopOf="@+id/staffProfile" />
 
             <TextView
                 android:id="@+id/staffStatus"
@@ -59,7 +59,7 @@
                 android:fontFamily="monospace"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintBottom_toBottomOf="@+id/staffProfile"
                 app:layout_constraintEnd_toEndOf="@+id/staffName"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/staffName"
