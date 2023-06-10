@@ -1,4 +1,4 @@
-package com.sawthandar.androidcodetest
+package com.sawthandar.androidcodetest.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import com.sawthandar.androidcodetest.api.response.BaseResponse
 import com.sawthandar.androidcodetest.api.response.LogInResponse
 import com.sawthandar.androidcodetest.databinding.ActivityLogInBinding
-import com.sawthandar.androidcodetest.util.SessionManager
 import com.sawthandar.androidcodetest.viewmodel.LogInViewModel
 
 class MainActivity : AppCompatActivity() {

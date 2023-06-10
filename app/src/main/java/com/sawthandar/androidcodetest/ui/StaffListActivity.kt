@@ -1,4 +1,4 @@
-package com.sawthandar.androidcodetest
+package com.sawthandar.androidcodetest.ui
 
 import android.content.Context
 import android.content.Intent
