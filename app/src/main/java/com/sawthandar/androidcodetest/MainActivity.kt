@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userKeyId = SessionManager.getUserKeyId(this)
+        /*val userKeyId = SessionManager.getUserKeyId(this)
         if (!userKeyId.isNullOrBlank()) {
             navigateToTeamMateList(userKeyId)
-        }
+        }*/
 
         viewModel.logInResult.observe(this) {
             when(it) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     hideLoading()
                     processLogIn(it.data)
-                    SessionManager.saveUserKeyId(this, it.data?.data?.keyId ?: "")
+                    //SessionManager.saveUserKeyId(this, it.data?.data?.keyId ?: "")
 
                 }
 
