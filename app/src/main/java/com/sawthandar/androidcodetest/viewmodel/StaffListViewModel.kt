@@ -20,10 +20,10 @@ class StaffListViewModel(application: Application): AndroidViewModel(application
         viewModelScope.launch {
             try {
                 val response = userRepository.getStaffList(accessToken = accessToken)
-                if (response?.body()?.error == false) {
+                if (response.body()?.error == false) {
                     staffListResult.value = BaseResponse.Success(response.body())
                 } else {
-                    staffListResult.value = BaseResponse.Error(response?.message())
+                    staffListResult.value = BaseResponse.Error(response.message())
                 }
             } catch (exception: Exception) {
                 staffListResult.value = BaseResponse.Error(exception.message)

@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sawthandar.androidcodetest.adapters.StaffListAdapter
 import com.sawthandar.androidcodetest.api.response.BaseResponse
 import com.sawthandar.androidcodetest.api.response.StaffListResponse

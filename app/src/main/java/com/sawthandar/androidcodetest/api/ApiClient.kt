@@ -1,6 +1,5 @@
 package com.sawthandar.androidcodetest.api
 
-import com.sawthandar.androidcodetest.util.Constants
 import com.sawthandar.androidcodetest.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
