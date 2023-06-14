@@ -4,7 +4,6 @@ import android.view.LayoutInflater import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sawthandar.androidcodetest.R
 import com.sawthandar.androidcodetest.api.response.Employees
-import java.util.ArrayList
 
 class StaffListAdapter : RecyclerView.Adapter<StaffListViewHolder>() {
     private val employeesList: MutableList<Employees> = ArrayList()
@@ -26,6 +25,7 @@ class StaffListAdapter : RecyclerView.Adapter<StaffListViewHolder>() {
         if (employees.isNotEmpty()) {
             this.employeesList.clear()
             this.employeesList.addAll(employees)
+            notifyDataSetChanged()
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.sawthandar.androidcodetest.api
 
 import com.sawthandar.androidcodetest.util.Constants
+import com.sawthandar.androidcodetest.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,16 +16,10 @@ object ApiClient {
         .addInterceptor(mHttpLoggingInterceptor)
         .build()
 
-    var mRetrofit: Retrofit? = null
-
-    val client: Retrofit? get() {
-        if (mRetrofit == null) {
-            mRetrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .client(mOkHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-        return mRetrofit
-    }
+    fun client(): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(mOkHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 }

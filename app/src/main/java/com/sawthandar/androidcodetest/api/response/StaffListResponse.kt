@@ -14,15 +14,15 @@ data class StaffListResponse(
 )
 
 data class Datas(
-    @SerializedName("employees")
+    @SerializedName("Items")
     var employees: List<Employees>
 )
 
 data class Employees(
-    @SerializedName("FullName")
-    var fullName: String,
+    @SerializedName("Name")
+    var name: String,
 
-    @SerializedName("Image")
-    var image: String
+    @SerializedName("Value")
+    var value: String
 
 )

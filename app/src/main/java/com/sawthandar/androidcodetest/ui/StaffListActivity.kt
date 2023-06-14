@@ -13,6 +13,7 @@ import com.sawthandar.androidcodetest.adapters.StaffListAdapter
 import com.sawthandar.androidcodetest.api.response.BaseResponse
 import com.sawthandar.androidcodetest.api.response.StaffListResponse
 import com.sawthandar.androidcodetest.databinding.ActivityStaffListBinding
+import com.sawthandar.androidcodetest.util.SessionManager
 import com.sawthandar.androidcodetest.viewmodel.StaffListViewModel
 
 class StaffListActivity: AppCompatActivity() {
@@ -41,7 +42,8 @@ class StaffListActivity: AppCompatActivity() {
             viewModel.getStaffList(userKeyId?: "")
         }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        setUpRecyclerView()
+        uiListener()
 
         viewModel.staffListResult.observe(this) {
             when(it) {
@@ -67,6 +69,22 @@ class StaffListActivity: AppCompatActivity() {
         }
     }
 
+    private fun setUpRecyclerView() {
+        staffListAdapter = StaffListAdapter()
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = staffListAdapter
+    }
+
+    private fun uiListener() {
+        binding.logOutBtn.setOnClickListener {
+            SessionManager.clearData(this)
+            finish()
+            MainActivity.start(this)
+        }
+    }
+
     private fun showLoading() {
         binding.progressBar.isVisible = true
     }
@@ -77,7 +95,6 @@ class StaffListActivity: AppCompatActivity() {
 
     private fun setUpStaffListData(data: StaffListResponse?) {
         staffListAdapter.setDataSet(data?.data?.employees?: emptyList())
-        binding.recyclerView.adapter = staffListAdapter
     }
 
     private fun processError(msg: String?) {

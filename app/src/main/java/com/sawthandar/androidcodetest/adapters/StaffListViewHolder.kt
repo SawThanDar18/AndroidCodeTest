@@ -17,11 +17,14 @@ class StaffListViewHolder(itemView: View) : RecyclerView.ViewHolder(
 
     var staffProfileImage: AvatarImageView = itemView.findViewById(R.id.staffProfile)
     var staffName: TextView = itemView.findViewById(R.id.staffName)
+    var status: TextView = itemView.findViewById(R.id.staffStatus)
 
     fun bind(employees: Employees) {
-        Glide.with(itemView)
+       /* Glide.with(itemView)
             .load(employees.image)
-            .into(staffProfileImage)
-        staffName.text = employees.fullName
+            .into(staffProfileImage)*/
+        staffName.text = employees.name
+        status.text = employees.value
+
     }
 }

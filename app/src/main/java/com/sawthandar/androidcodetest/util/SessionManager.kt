@@ -2,6 +2,7 @@ package com.sawthandar.androidcodetest.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.sawthandar.androidcodetest.R
 
 object SessionManager {
@@ -18,6 +19,7 @@ object SessionManager {
     private fun saveString(context: Context, key: String, value: String) {
         val preferences: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         val editor = preferences.edit()
+        editor.putString(key, value)
         editor.apply()
     }
 
@@ -26,7 +28,7 @@ object SessionManager {
         return preferences.getString(this.USER_KEY_ID, null)
     }
 
-    private fun clearData(context: Context) {
+    fun clearData(context: Context) {
         val editor = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE).edit()
         editor.clear()
         editor.apply()

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/margin_medium"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_marginBottom="@dimen/margin_medium"
+    android:background="@drawable/background_round_corner_shape">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/corner_radius_small"
-        app:cardElevation="4dp"
-        app:cardPreventCornerOverlap="true"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,56 +17,49 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <cn.carbs.android.avatarimageview.library.AvatarImageView
+            android:id="@+id/staffProfile"
+            android:layout_width="@dimen/staff_profile_size"
+            android:layout_height="@dimen/staff_profile_size"
+            android:layout_marginVertical="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:src="@drawable/background_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <cn.carbs.android.avatarimageview.library.AvatarImageView
-                android:id="@+id/staffProfile"
-                android:layout_width="@dimen/staff_profile_size"
-                android:layout_height="@dimen/staff_profile_size"
-                android:layout_marginVertical="@dimen/margin_medium"
-                android:layout_marginStart="@dimen/margin_small"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/staffName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="monospace"
+            android:text="Saw Thandar"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/staffProfile"
+            app:layout_constraintTop_toTopOf="@+id/staffProfile" />
 
-            <TextView
-                android:id="@+id/staffName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Saw Thandar"
-                android:textSize="@dimen/text_size_medium"
-                android:fontFamily="monospace"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/staffProfile"
-                app:layout_constraintTop_toTopOf="@+id/staffProfile" />
+        <TextView
+            android:id="@+id/staffStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="monospace"
+            android:text="Employee"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/staffProfile"
+            app:layout_constraintEnd_toEndOf="@+id/staffName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/staffName"
+            app:layout_constraintTop_toBottomOf="@+id/staffName"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/staffStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Employee"
-                android:textSize="@dimen/text_size_medium"
-                android:fontFamily="monospace"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/staffProfile"
-                app:layout_constraintEnd_toEndOf="@+id/staffName"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/staffName"
-                app:layout_constraintTop_toBottomOf="@+id/staffName"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

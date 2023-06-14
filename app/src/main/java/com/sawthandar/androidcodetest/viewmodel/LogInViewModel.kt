@@ -1,10 +1,12 @@
 package com.sawthandar.androidcodetest.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sawthandar.androidcodetest.api.repository.UserRepository
+import com.sawthandar.androidcodetest.api.request.LogInRequest
 import com.sawthandar.androidcodetest.api.response.BaseResponse
 import com.sawthandar.androidcodetest.api.response.LogInResponse
 import kotlinx.coroutines.launch
@@ -20,19 +22,20 @@ class LogInViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             try {
 
+                val loginRequest = LogInRequest(
+                    companyId, userId, password
+                )
                 val response = userRepository.logInUser(
-                    companyId = companyId,
-                    userId = userId,
-                    password = password
+                    loginRequest
                 )
 
-                if (response?.body()?.error == false) {
+                if (response.body()?.error == false) {
                     logInResult.value = BaseResponse.Success(response.body())
                 } else {
-                    logInResult.value = BaseResponse.Error(response?.message())
+                    logInResult.value = BaseResponse.Error(response.message())
                 }
             } catch (exception: Exception) {
-                logInResult.value = BaseResponse.Error(exception.message)
+                logInResult.value = BaseResponse.Error(exception.message.toString())
             }
         }
     }

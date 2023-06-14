@@ -1,13 +1,17 @@
 package com.sawthandar.androidcodetest.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.sawthandar.androidcodetest.api.response.BaseResponse
 import com.sawthandar.androidcodetest.api.response.LogInResponse
 import com.sawthandar.androidcodetest.databinding.ActivityLogInBinding
+import com.sawthandar.androidcodetest.util.SessionManager
 import com.sawthandar.androidcodetest.viewmodel.LogInViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -15,15 +19,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
     private val viewModel by viewModels<LogInViewModel>()
 
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            return context.startActivity(intent)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*val userKeyId = SessionManager.getUserKeyId(this)
+        val userKeyId = SessionManager.getUserKeyId(this)
         if (!userKeyId.isNullOrBlank()) {
             navigateToTeamMateList(userKeyId)
-        }*/
+        }
 
         viewModel.logInResult.observe(this) {
             when(it) {
@@ -34,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     hideLoading()
                     processLogIn(it.data)
-                    //SessionManager.saveUserKeyId(this, it.data?.data?.keyId ?: "")
+                    SessionManager.saveUserKeyId(this, it.data?.data?.keyId ?: "")
 
                 }
 
@@ -60,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkUserInputNull() {
 
-        val companyId = binding.companyIdEdt.text.toString()
-        val userId = binding.usernameEdt.text.toString()
+        val companyId = binding.companyIdEdt.text.toString().replace(" ", "")
+        val userId = binding.usernameEdt.text.toString().replace(" ", "")
         val password = binding.passwordEdt.text.toString()
 
         val fullInfo = (companyId.isNotBlank() && userId.isNotBlank() && password.isNotBlank())
@@ -73,8 +84,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToTeamMateList(userKeyId: String?) {
-        finish()
         StaffListActivity.start(this, userKeyId ?: "")
+        finish()
     }
 
     private fun showLoading() {
